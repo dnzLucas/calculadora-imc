@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        function click_calcular() {
+            let peso = document.getElementById("peso".replace(",",".")).value;
+            let altura = document.getElementById("altura").value;
+            let imc = Number(peso) / (Number(altura) * Number(altura));
+            document.getElementById("imc").value = imc;
+        }
+
+        function limpar() {
+            let peso = document.getElementById("peso").value = "";
+            let altura = document.getElementById("altura").value = "";
+            document.getElementById("imc").value = "";
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <form>
+    <div class="content-form" >
+        <div class="input-form">
+            <div class="PesoAltura" >
+                <div>
+                    <label for="peso">Peso</label>
+                    <input id="peso" type="number" name="peso">
+                </div>
+    
+                <div>
+                    <label for="altura">Altura</label>
+                    <input id="altura" type="number" name="altura">
+                </div>
+            </div>
+    
+            <input id="imc" disabled placeholder="IMC">
+        </div>
+
+        <div>
+            <input type="button" value="Confirmar" onclick="click_calcular();">
+            <input type="button" value="Limpar" onclick="limpar()">
+        </div>
+    </div>
+
+    </form>
+
+</body>
+
+</html>
