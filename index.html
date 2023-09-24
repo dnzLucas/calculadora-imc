@@ -9,49 +9,71 @@
 
     <script>
         function click_calcular() {
-            let peso = document.getElementById("peso".replace(",",".")).value;
+            let peso = document.getElementById("peso").value;
             let altura = document.getElementById("altura").value;
             let imc = Number(peso) / (Number(altura) * Number(altura));
-            document.getElementById("imc").value = imc;
-        }
+            document.getElementById("imc").value = imc.toFixed(2);
 
+            let imcInput = document.getElementById("imc");
+            let texto = document.getElementById("texto");
+
+            if (imc < 18.5) {
+                imcInput.style.backgroundColor = "red";
+                texto.innerText = "Você está abaixo do peso!";
+                imcInput.style.color = "white"
+                texto.style.color = "red";
+
+            } else if (imc >= 18.5 && imc < 25) {
+                imcInput.style.backgroundColor = "green"; 
+                imcInput.style.color = "white"
+                texto.innerText = "Você está saudável!";
+                texto.style.color = "green";
+            }
+
+            else {
+                imcInput.style.backgroundColor = "yellow"; 
+                texto.innerText = "Você está acima do peso!";
+                imcInput.style.color = "black"
+                texto.style.color = "yellow";
+            }
+
+        }
         function limpar() {
             let peso = document.getElementById("peso").value = "";
             let altura = document.getElementById("altura").value = "";
             document.getElementById("imc").value = "";
         }
-
     </script>
 
 </head>
 
 <body>
     <form>
-    <div class="content-form" >
-        <div class="input-form">
-            <div class="PesoAltura" >
-                <div>
-                    <label for="peso">Peso</label>
-                    <input id="peso" type="number" name="peso">
+        <div class="content-form">
+            <h1>IMC Calculator</h1>
+            <div class="input-form">
+                <div class="PesoAltura">
+                    <div>
+                        <label for="peso">Peso</label>
+                        <input id="peso" type="number" name="peso">
+                    </div>
+                    <div>
+                        <label for="altura">altura</label>
+                        <input id="altura" type="number" name="altura">
+                    </div>
                 </div>
-    
-                <div>
-                    <label for="altura">Altura</label>
-                    <input id="altura" type="number" name="altura">
-                </div>
+
+                <input id="imc" disabled placeholder="IMC">
             </div>
-    
-            <input id="imc" disabled placeholder="IMC">
-        </div>
 
-        <div>
-            <input type="button" value="Confirmar" onclick="click_calcular();">
-            <input type="button" value="Limpar" onclick="limpar()">
+            <div class="buttons">
+                <input type="button" value="Confirmar" onclick="click_calcular();">
+                <input type="button" value="Limpar" onclick="limpar()">
+                <p id="texto"></p>
+            </div>
         </div>
-    </div>
-
     </form>
-
+    <p>Feito por Lucas Diniz</p>
 </body>
 
 </html>
